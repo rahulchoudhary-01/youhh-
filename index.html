@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💗 Mohit & Komal 💗</title>
+<style>
+  * {margin: 0; padding: 0; box-sizing: border-box;}
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd6e8, #fff0f5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2em;
+    color: #d63384;
+    margin: 20px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+
+  .heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: fall 6s linear infinite;
+  }
+
+  .heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #ff4d6d;
+    border-radius: 50%;
+  }
+
+  .heart::before { top: -7.5px; left: 0; }
+  .heart::after { left: 7.5px; top: 0; }
+
+  @keyframes fall {
+    0% {top: -10%; opacity: 1;}
+    100% {top: 110%; opacity: 0;}
+  }
+
+  #forgive {
+    display: none;
+    padding: 15px 30px;
+    background: #ff4d6d;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(255,0,100,0.4);
+    transition: all 0.3s ease;
+  }
+  #forgive:hover {
+    background: #ff80a6;
+    transform: scale(1.1);
+  }
+
+  #finalMessage {
+    display: none;
+    color: #c9184a;
+    font-size: 2em;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #ffb3c6; }
+    to { text-shadow: 0 0 25px #ff4d6d, 0 0 50px #ffb3c6; }
+  }
+</style>
+</head>
+<body>
+
+<h1 id="text">Loading...</h1>
+<button id="forgive">💖 Tap to Forgive 💖</button>
+<h1 id="finalMessage">Thank you Komal 💗 You made Mohit’s world complete again 💫</h1>
+
+<script>
+const lines = [
+  "Hi... it’s me, Mohit 🥺",
+  "I know I made mistakes, Komal 💔",
+  "Sometimes we hurt the one who loves us most 💭",
+  "If I could go back in time, I’d choose your smile over my ego 💗",
+  "I miss your laughter, your talks, your care 💫",
+  "Every moment without you feels incomplete 😢",
+  "You are not just someone... you’re everything to me 🌸",
+  "I’m really sorry for every tear I caused 💧",
+  "Please forgive me, Komal 💌",
+  "Because some hearts only beat for one soul 💖 — Yours, Mohit 💞"
+];
+
+const text = document.getElementById("text");
+const forgiveBtn = document.getElementById("forgive");
+const finalMessage = document.getElementById("finalMessage");
+let i = 0;
+
+function showNextLine() {
+  text.style.opacity = 0;
+  setTimeout(() => {
+    text.textContent = lines[i];
+    text.style.opacity = 1;
+    i++;
+    if (i < lines.length) {
+      setTimeout(showNextLine, 7000);
+    } else {
+      setTimeout(() => {
+        forgiveBtn.style.display = "block";
+      }, 6000);
+    }
+  }, 1000);
+}
+showNextLine();
+
+// Heart rain animation
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 200);
+
+forgiveBtn.addEventListener("click", () => {
+  forgiveBtn.style.display = "none";
+  text.style.display = "none";
+  finalMessage.style.display = "block";
+});
+</script>
+
+<audio autoplay loop>
+  <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
